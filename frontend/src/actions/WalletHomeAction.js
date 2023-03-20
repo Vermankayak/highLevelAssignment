@@ -2,15 +2,14 @@ import axios from "axios";
 
 const {
     REACT_APP_PROTOCOL,
-    REACT_APP_HOST,
-    REACT_APP_PORT
+    REACT_APP_HOST
     } = process.env;
     
 export function WalletHomeAction(bodyData){
     return async function(dispatch){
         let walletId;
         try{
-            const response = await axios.post(`${REACT_APP_PROTOCOL}://${REACT_APP_HOST}:${REACT_APP_PORT}/api/setup`, bodyData);
+            const response = await axios.post(`${REACT_APP_PROTOCOL}://${REACT_APP_HOST}/api/setup`, bodyData);
             const { data } = response;
             walletId = data.id
             if(response.status === 200){

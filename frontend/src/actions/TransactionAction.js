@@ -2,8 +2,7 @@ import axios from "axios";
 
 const {
     REACT_APP_PROTOCOL,
-    REACT_APP_HOST,
-    REACT_APP_PORT
+    REACT_APP_HOST
     } = process.env;
 
 export function TransactionAction(walletId, type, bodyData){
@@ -12,7 +11,7 @@ export function TransactionAction(walletId, type, bodyData){
             if(type==="Debit"){
                 bodyData.amount = (bodyData.amount * -1).toFixed(4)
             }
-            const response = await axios.post(`${REACT_APP_PROTOCOL}://${REACT_APP_HOST}:${REACT_APP_PORT}/api/transact/${walletId}`, bodyData);
+            const response = await axios.post(`${REACT_APP_PROTOCOL}://${REACT_APP_HOST}/api/transact/${walletId}`, bodyData);
             const transactionData = response.data;
             if(response.status === 200){
                 dispatch({type: "POST_TRANSACTION_DATA_SUCCESS", payload:transactionData});
