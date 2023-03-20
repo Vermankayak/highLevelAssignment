@@ -16,7 +16,7 @@ export function WalletHomeAction(bodyData){
                dispatch({type: "POST_NEW_WALLET_DATA_SUCCESS", payload:data});
                try{
                 if(walletId){
-                    const response = await axios.get(`${REACT_APP_PROTOCOL}://${REACT_APP_HOST}:${REACT_APP_PORT}/api/wallet/${walletId}`);
+                    const response = await axios.get(`${REACT_APP_PROTOCOL}://${REACT_APP_HOST}/api/wallet/${walletId}`);
                     const walletData  = response.data;
                     if(response.status === 200){
                         return dispatch({type: "GET_WALLET_DATA_SUCCESS", payload:walletData});
