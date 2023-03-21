@@ -18,8 +18,7 @@ DECIMAL_POINTS
 Similarly, the frontend requires the following environment variables to be set:
 <pre>
 REACT_APP_LIMIT
-REACT_APP_HOST
-REACT_APP_PORT
+REACT_APP_HOST ---> should be in the format host:port
 REACT_APP_PROTOCOL
 </pre>
 ### Then do npm start for both backend and frontend
