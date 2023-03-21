@@ -149,9 +149,11 @@ function WalletHome(){
             ):<></>}
          
         </div>
-        <div className="d-flex">
-           {Object.keys(walletHome).length > 0 && Object.keys(walletHome).indexOf("msg") < 0 ? <></>: (<div className="container w-25" >
-                <form className="was-validated">
+        <div className="d-flex ">
+           {Object.keys(walletHome).length > 0 && Object.keys(walletHome).indexOf("msg") < 0 ? <></>: (
+           <div className="container w-100" >
+                
+                <form className="was-validated w-100">
                     <div className="mt-5">
                         <label className="form-label mt-5">Name:</label>
                         <input type="name" className="form-control" id="name" placeholder="Enter Name" name="name" onChange={nameHandler}/>
@@ -169,8 +171,8 @@ function WalletHome(){
                 </form>
             </div>)}
             {Object.keys(walletHome).length > 0 && Object.keys(walletHome).indexOf("msg") < 0? (
-                <div className="container w-25">
-                    <form className="was-validated">
+                <div className="container w-100">
+                    <form className="was-validated w-100">
                         <div className="mt-5">
                             <label className="form-label mt-5">Transaction Amount:</label>
                             <input type="transaction-amount" className="form-control" id="transaction" placeholder="Enter Transaction" name="transaction-amount" defaultValue={0} onChange={transactionAmountHandler}/>
