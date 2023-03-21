@@ -7,6 +7,7 @@ import { WalletHomeAction } from "../actions/WalletHomeAction";
 
 function WalletHome(){
     const [ name, setName ] = useState("");
+    const [isMounted, setIsMounted] = useState(false);
     const [ balance, setBalance ] = useState(0);
     const [ transactionAmount, setTransactionAmount ] = useState(0);
     const [ submit, setSubmit ] = useState(0);
@@ -23,9 +24,12 @@ function WalletHome(){
             balance_vch
         }] = walletBalance;
     }
+    useEffect(() => {
+        setIsMounted(true); // set isMounted to true after component has mounted
+      }, []);
 
     useEffect(() => {
-        if (typeof walletHome?.msg === "string") {
+        if (isMounted && typeof walletHome?.msg === "string") {
             Swal.fire({
                 title: 'Error!',
                 text: `${walletHome.msg}`,
@@ -150,16 +154,16 @@ function WalletHome(){
                 <form className="was-validated">
                     <div className="mt-5">
                         <label className="form-label mt-5">Name:</label>
-                        <input type="name" className="form-control" id="name" placeholder="Enter Name" name="name" onChange={nameHandler} style={{minWidth:"300px"}}/>
+                        <input type="name" className="form-control" id="name" placeholder="Enter Name" name="name" onChange={nameHandler}/>
                         <div className="valid-feedback">Valid.</div>
                         <div className="invalid-feedback">Please fill out this field.</div>
                     </div>
                     <div className="mt-5">
                         <label className="form-label">Balance:</label>
-                        <input type="name" className="form-control" id="name" placeholder="Enter Balance To Setup Your Wallet" name="name" defaultValue={0} onChange={balanceHandler} style={{minWidth:"300px"}}/>
+                        <input type="name" className="form-control" id="name" placeholder="Enter Balance To Setup Your Wallet" name="name" defaultValue={0} onChange={balanceHandler}/>
                     </div>
                     <div className="mt-5" style={{ textAlign: "center" }}>
-                        <button className="btn btn-success w-100 rounded-0" onClick={submitHandler} style={{minWidth:"300px"}}>Submit</button>
+                        <button className="btn btn-success w-100 rounded-0" onClick={submitHandler}>Submit</button>
                     </div>
 
                 </form>
@@ -169,7 +173,7 @@ function WalletHome(){
                     <form className="was-validated">
                         <div className="mt-5">
                             <label className="form-label mt-5">Transaction Amount:</label>
-                            <input type="transaction-amount" className="form-control" id="transaction" placeholder="Enter Transaction" name="transaction-amount" defaultValue={0} onChange={transactionAmountHandler} style={{minWidth:"300px"}}/>
+                            <input type="transaction-amount" className="form-control" id="transaction" placeholder="Enter Transaction" name="transaction-amount" defaultValue={0} onChange={transactionAmountHandler}/>
                             <div className="valid-feedback">Valid.</div>
                             <div className="invalid-feedback">Please fill out this field.</div>
                         </div>
@@ -179,7 +183,7 @@ function WalletHome(){
                             
                         </div>
                         <div className="mt-5" style={{ textAlign: "center" }}>
-                            <button className="btn btn-success w-100 rounded-0" onClick={transactionSubmitHandler} style={{minWidth:"300px"}}>Submit</button>
+                            <button className="btn btn-success w-100 rounded-0" onClick={transactionSubmitHandler}>Submit</button>
                         </div>
 
                     </form>
